@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search by Manasvin Shrimali</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.cdnfonts.com/css/m-plus-1-code" rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/m-plus-1-code');
+        .mt-4_mb-4:hover{ transform: scale(1.07);
+        border-radius: 0%;}
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4_mb-4" style="text-align: center; color: rgb(255, 218, 254); border: 3px solid red; border-radius: 50px; font-size:50px; padding: 10px 10px; font-weight: 800; transition: 0.5s ease-in-out;">🎬Movie
+            Search🎬</h1>
+
+        {% if session.logged_in %}
+        <p>Welcome, {{ session.username }}! (<a href="{{ url_for('logout') }}">Logout</a>)</p>
+        {% else %}
+        <p><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a> to access
+            additional features.</p>
+        {% endif %}
+
+        {% if success_message %}
+        <div class="alert alert-success" role="alert">
+            {{ success_message }}
+        </div>
+        {% endif %}
+
+        <form method="post" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Search for movies..." required>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">🔎</button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <p>This website is my own personal project, a bit of a passion project really! It took more time just to get the Linux environment set up from scratch on Arch Linux (without archinstall) . Compiled everything from source code.
+                The website can search for movies using the OMDB API (although that's limited to 500 requests per day). There's just one problem[there are others too but...] -  it can't seem to grab the total runtime for TV shows.
+                Here's the important part: There are no backups for any data entered on the site, and it's not encrypted either. That means any information you provide could be lost and isn't exactly secure. So, avoid using any sensitive details when logging in or registering altogether.  Since I built the server myself using Arch Linux, there might be some technical quirks for people who aren't familiar with the system.
+                To be honest, this is more of a learning project for me than a fully-fledged application. Sure, it can search for movies, but the lack of TV show runtime, missing backups, and unencrypted storage make it unsuitable for serious movie tracking or storing any sensitive information.  Maybe someday it'll be there, but for now, it's a fun project  !
+                For development, I used a combination of Python and a web framework called Flask.  The front-end is built with familiar tools like HTML5, Bootstrap (for styling), and CSS3. To store data, I implemented a MySQL database (though it's not the Microsoft version, but a similar open-source option), some bash prompts for zsh shell, with port forwarding.</p>
+        </div>
+
+        <!-- Button to go to watched movies -->
+        <a href="{{ url_for('watched_movies') }}" class="btn btn-secondary mb-4">✔️Watched.Movies✔️</a>
+
+        {% if movies %}
+        <div class="row">
+            {% for movie in movies %}
+            <div class="col-md-3"> 
+                <div class="card mb-4">
+                    <img src="{{ movie['Poster'] }}" class="card-img-top" alt="{{ movie['Title'] }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie['Title'] }}</h5>
+                        <p class="card-text">{{ movie['Year'] }}</p>
+                        <a href="{{ url_for('movie_details', movie_id=movie['imdbID']) }}"
+                            class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            No movies found. Please try another search.
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

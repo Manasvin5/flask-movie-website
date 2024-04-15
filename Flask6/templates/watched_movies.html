@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watched Movies</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        
+        .card-img-top {
+            max-height: 320px;
+            
+            width: 100%;
+            
+        }
+
+        .card {
+            height: 450px;
+            
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .total_time {
+            text-align: center;
+            transition: 0.5s ease-in-out;
+            padding: 7px 7px;
+            border: 1px solid grey;
+            color:darkorange;
+            transition: 0.2s ease-in-out;
+        }
+        .total_time:hover{transform: scale(1.03);
+        border-radius: 40px;
+    }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Watched Movies</h1>
+
+        {% if session.logged_in %}
+        <p>Welcome, {{ session.username }}! (<a href="{{ url_for('logout') }}">Logout</a>)</p>
+        {% else %}
+        <p><a href="{{ url_for('login') }}">Login</a> to view watched movies.</p>
+        {% endif %}
+
+        {% if total_runtime %}
+        <p>
+        <h2 class="total_time">Total Runtime of Watched Movies: {{ total_runtime }} minutes</h2>
+        </p>
+        {% endif %}
+
+        {% if watched_movies %}
+        <div class="row">
+            {% for movie in watched_movies %}
+            <div class="col-md-3" style="width: 1000px;">
+                <div class="card mb-4">
+                    <img src="{{ movie['Poster'] }}" class="card-img-top" alt="{{ movie['movie_name'] }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie['movie_name'] }}</h5>
+                        <p class="card-text">Year: {{ movie['year'] }}</p>
+                        <p class="card-text">Runtime: {{ movie['runtime'] }} minutes</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            No watched movies found.
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

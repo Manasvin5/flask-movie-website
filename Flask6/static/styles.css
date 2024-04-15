@@ -1,0 +1,135 @@
+/* Body styles */
+body {
+  background: url("https://images.unsplash.com/photo-1603366615917-1fa6dad5c4fa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center no-repeat fixed;
+  background-size: cover;
+  color: #e3ff11;
+  font-family: 'M PLUS 1 Code', sans-serif;
+  font-weight: bold;
+  border: #7bf0ff;
+  border-radius: 10px;
+  /* https://coolwallpapers.me/picsup/3377129-night-sky-stars-starry-sky.jpg */
+
+}
+
+/* Container styles */
+.container {
+  background: url("");
+  padding: 30px;
+  border-radius: 5px;
+  /* Subtle rounded corners */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Subtle box shadow */
+  margin-top: 40px;
+
+}
+
+/* Card styles */
+.card {
+  transition: transform 0.6s, box-shadow 0.6s;
+  background-color: #430e00;
+  /* White card background */
+  background: url("");
+  border: 3px solid rgb(174, 250, 129);
+  border-radius: 3px;
+
+
+}
+
+.card:hover {
+  box-shadow: 15px 15px 15px rgb(168, 44, 213);
+  /* Slight box shadow on hover */
+  transform: scale(1.15) rotate3d(0, 1, 0, -3deg) skewX(-3deg);
+  transition: all 0.2 s ease;
+  border: 0px;
+}
+
+/* Header and link colors */
+h1,
+h2,
+h3,
+a {
+  color: #84fd76;
+  /* Dark text color */
+  transition: color 0.4s;
+}
+
+h1:hover,
+h2:hover,
+h3:hover,
+a:hover {
+  color: #8800b5;
+  /* Black text color on hover */
+}
+
+/* Button styles */
+.btn {
+  background-color: rgb(248, 150, 243);
+  /* Blue button color */
+  color: #000000;
+  /* White text color */
+  border: rgb(247, 165, 255);
+  border-radius: 10px;
+  /* Subtle rounded corners */
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.4s, transform 0.4s;
+}
+
+.btn:hover {
+  background-color: #f3da4b;
+  /* Darker blue on hover */
+  transform: scale(1.25) rotate3d(1, 0, 0, 360deg);
+  /* Slight scale on hover */
+  color: rgb(89, 0, 128);
+  transition: all 0.4s ease;
+
+}
+
+/* Input styles */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 1px solid #a18cff;
+  /* Light gray border */
+  border-radius: 5px;
+  /* Subtle rounded corners */
+  transition: border-color 0.4s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: #ffee00;
+  /* Blue border color on focus */
+}
+
+/* Success and error messages */
+.flash {
+  color: #1bf01e;
+  /* Green success message color */
+  background-color: #dff0d8;
+  /* Light green success message background color */
+  border: 1px solid #c3e6cb;
+  /* Lighter green border color */
+  border-radius: 5px;
+  /* Subtle rounded corners */
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.flash-danger {
+  color: #fa6764;
+  /* Red error message color */
+  background-color: #f2dede;
+  /* Light red error message background color */
+  border: 1px solid #d6cec0;
+  /* Lighter red border color */
+  border-radius: 5px;
+  /* Subtle rounded corners */
+  padding: 15px;
+  margin-bottom: 30px;
+}

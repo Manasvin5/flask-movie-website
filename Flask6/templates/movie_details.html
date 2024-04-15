@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie['Title'] }} - Movie Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">{{ movie['Title'] }} - Movie Details</h1>
+        
+        <div class="row">
+            <!-- Movie Poster (on the left) -->
+            <div class="col-md-6">
+                <div class="card mb-6">
+                    <img src="{{ movie['Poster'] }}" class="card-img-top" alt="{{ movie['Title'] }}">
+                </div>
+            </div>
+
+            <!-- Movie Details and Buttons (on the right) -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie['Title'] }}</h5>
+                        <p class="card-text">Year: {{ movie['Year'] }}</p>
+                        <p class="card-text">Rated: {{ movie['Rated'] }}</p>
+                        <p class="card-text">Runtime: {{ movie['Runtime'] }}</p>
+                        <p class="card-text">Genre: {{ movie['Genre'] }}</p>
+                        <p class="card-text">Plot: {{ movie['Plot'] }}</p>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <form method="post" action="{{ url_for('mark_as_watched', movie_id=movie['imdbID']) }}">
+                    <button type="submit" class="btn btn-primary">Mark as Watched</button>
+                </form>
+
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Search</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
